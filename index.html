@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>mpu6050</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+    $(document).ready(function() {
+        var socket = io('/');
+        socket.emit('readSensor');
+        socket.on('sensordata', function(data) {
+            //console.log('sensordata', data);
+            //objString = JSON.stringify(data);
+           //$("#content").text(objString);
+            $("#counter").text(data.counter.toFixed(0));
+            $("#gyrox").text(data.gyro.x.toFixed(2));
+            $("#gyroy").text(data.gyro.y.toFixed(2));
+            $("#gyroz").text(data.gyro.z.toFixed(2));
+            $("#accelx").text(data.accel.x.toFixed(2));
+            $("#accely").text(data.accel.y.toFixed(2));
+            $("#accelz").text(data.accel.z.toFixed(2));
+            $("#rotationx").text(data.rotation.x.toFixed(2));
+            $("#rotationy").text(data.rotation.y.toFixed(2));
+            $("#rotationz").text(data.rotation.z.toFixed(2));
+            $("#temp").text(data.temp.toFixed(2));
+            $("#uptime").text(data.uptime.toFixed(2));
+            socket.emit('readSensor');
+        });
+    });
+    </script>
+</head>
+
+<body>
+    <!-- <div id="content">Hello World</div> -->
+    <div class="container">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>sensor</th>
+                    <th>value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>counter</td>
+                    <td id="counter">..</td>
+                </tr>
+                <tr>
+                    <td>gyro.x</td>
+                    <td id="gyrox">..</td>
+                </tr>                <tr>
+                    <td>gyro.y</td>
+                    <td id="gyroy">..</td>
+                </tr>
+                <tr>
+                    <td>gyro.z</td>
+                    <td id="gyroz">..</td>
+                </tr>
+                <tr>
+                    <td>accel.x</td>
+                    <td id="accelx">..</td>
+                </tr>
+                <tr>
+                    <td>accel.y</td>
+                    <td id="accely">..</td>
+                </tr>
+                <tr>
+                    <td>accel.z</td>
+                    <td id="accelz">..</td>
+                </tr>
+                <tr>
+                    <td>rotation.x</td>
+                    <td id="rotationx">..</td>
+                </tr>
+                <tr>
+                    <td>rotation.y</td>
+                    <td id="rotationy">..</td>
+                </tr>
+                <tr>
+                    <td>rotation.z</td>
+                    <td id="rotationz">..</td>
+                </tr>
+                <tr>
+                    <td>temp</td>
+                    <td id="temp">..</td>
+                </tr>
+                 <tr><td>uptime</td><td id="uptime">..</td></tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

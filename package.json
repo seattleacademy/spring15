@@ -1,0 +1,28 @@
+{
+  "name": "apr10",
+  "version": "1.0.0",
+  "description": "mpu6050 socket.io electron",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seattleacademy/apr10.git"
+  },
+  "keywords": [
+    "mpu6050",
+    "electron"
+  ],
+  "author": "Gary Anderson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/seattleacademy/apr10/issues"
+  },
+  "homepage": "https://github.com/seattleacademy/apr10#readme",
+  "dependencies": {
+    "i2c-bus": "^1.0.2",
+    "i2c-mpu6050": "^2.2.1",
+    "socket.io": "^1.4.5"
+  }
+}
