@@ -10,14 +10,18 @@
  var sensor = new MPU6050(i2c1, address);
 
  var data = sensor.readSync();
-
+ sensor.calibrateGyro({x:-data.gyro.x,y:-data.gyro.y,z:-data.gyro.z} );
+ sensor.calibrateAccel({x:-data.accel.x,y:-data.accel.y,z:-data.accel.z+1} );
+ data = sensor.readSync();
+ console.log(data);
  var port = (process.argv[2] ? Number(process.argv[2]) : 3000);
  app.listen(port);
  console.log("listening on port ", port);
 
  function handler(req, res) {
+     //console.log(req);
      data = sensor.readSync();
-     console.log(data);
+     //console.log(data);
      res.setHeader("Access-Control-Allow-Origin", "*");
      res.writeHead(200);
      reply = data.gyro.x.toString() + "\n";
